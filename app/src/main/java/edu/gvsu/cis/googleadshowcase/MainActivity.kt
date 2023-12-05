@@ -27,6 +27,12 @@ class MainActivity : AppCompatActivity() {
             val intent2 = Intent(this@MainActivity, InterstitialActivity::class.java)
             startActivity(intent2)
         })
+
+        var rewardButton = findViewById<Button>(R.id.nav_reward)
+        rewardButton.setOnClickListener(View.OnClickListener {
+            val intent3 = Intent(this@MainActivity, RewardActivity::class.java)
+            startActivity(intent3)
+        })
     }
 }
 
