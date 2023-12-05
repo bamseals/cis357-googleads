@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -14,22 +15,18 @@ import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 
 class RewardActivity : AppCompatActivity() {
+    private var totalReward = 0
     private var rewardedAd: RewardedAd? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reward)
+        var rewardButton = findViewById<Button>(R.id.rewardBtn)
+        var rewardCount = findViewById<TextView>(R.id.rewardCount)
 
-        var adRequest = AdRequest.Builder().build()
-        RewardedAd.load(this,"ca-app-pub-3940256099942544/5224354917", adRequest, object : RewardedAdLoadCallback() {
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                rewardedAd = null
-            }
+        loadRewardAd()
 
-            override fun onAdLoaded(ad: RewardedAd) {
-                rewardedAd = ad
-            }
-        })
+        // Interface to trigger events based on how user interacts with ad
         rewardedAd?.fullScreenContentCallback = object: FullScreenContentCallback() {
             override fun onAdClicked() {
                 // Called when a click is recorded for an ad.
@@ -37,14 +34,15 @@ class RewardActivity : AppCompatActivity() {
 
             override fun onAdDismissedFullScreenContent() {
                 // Called when ad is dismissed.
-                // Set the ad reference to null so you don't show the ad a second time.
-                rewardedAd = null
+
+                // Can set to null if you only want it to run once
+                // rewardedAd = null
             }
 
             override fun onAdFailedToShowFullScreenContent(adError: AdError) {
                 // Called when ad fails to show.
                 super.onAdFailedToShowFullScreenContent(adError)
-                rewardedAd = null
+                // rewardedAd = null
             }
 
             override fun onAdImpression() {
@@ -55,19 +53,33 @@ class RewardActivity : AppCompatActivity() {
                 // Called when ad is shown.
             }
         }
-
-        var rewardButton = findViewById<Button>(R.id.rewardBtn)
         rewardButton.setOnClickListener(View.OnClickListener {
             rewardedAd?.let { ad ->
-                ad.show(this, OnUserEarnedRewardListener { rewardItem ->
+                ad.show(this, OnUserEarnedRewardListener { _ ->
                     // Handle the reward.
-                    val rewardAmount = rewardItem.amount
-                    val rewardType = rewardItem.type
+                    // val rewardAmount = rewardItem.amount
+                    // val rewardType = rewardItem.type
+                    totalReward += 1
+                    rewardCount.text = "Total earned reward: $totalReward"
+                    loadRewardAd()
                 })
             } ?: run {
                 // Ad not yet properly loaded
             }
 
+        })
+    }
+
+    fun loadRewardAd() {
+        var adRequest = AdRequest.Builder().build()
+        RewardedAd.load(this,"ca-app-pub-3940256099942544/5224354917", adRequest, object : RewardedAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                rewardedAd = null
+            }
+
+            override fun onAdLoaded(ad: RewardedAd) {
+                rewardedAd = ad
+            }
         })
     }
 }
