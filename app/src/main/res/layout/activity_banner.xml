@@ -2,16 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bannerContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".BannerActivity">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/adText1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Some words go here" />
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Banner Ads are great for slipping some ads in between sections of content. Default banners have a fixed size, usually 320x50:" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/banner1"
@@ -20,6 +24,40 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
+
+    <TextView
+        android:id="@+id/adText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Larger default static banner sizes are available as well:" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/banner2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="MEDIUM_RECTANGLE"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
+
+    <TextView
+        android:id="@+id/adText3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="Smart Banners are better at adapting to the width and height of your device: " />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/banner3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:adSize="SMART_BANNER"
         app:adUnitId="ca-app-pub-3940256099942544/6300978111"></com.google.android.gms.ads.AdView>
 
 </LinearLayout>
