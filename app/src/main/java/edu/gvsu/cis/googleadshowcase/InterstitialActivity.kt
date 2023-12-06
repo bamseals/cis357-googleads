@@ -65,6 +65,7 @@ class InterstitialActivity : AppCompatActivity() {
                             Log.d(TAG, "Ad showed fullscreen content.")
                         }
                     }
+                    showInterstitialAd()
                 }
             })
     }
