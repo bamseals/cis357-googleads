@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
-        var interstitialButton = findViewById<Button>(R.id.interstitial)
+        var interstitialButton = findViewById<Button>(R.id.nav_interstitial)
         interstitialButton.setOnClickListener(View.OnClickListener {
             val intent2 = Intent(this@MainActivity, InterstitialActivity::class.java)
             startActivity(intent2)
@@ -32,6 +32,12 @@ class MainActivity : AppCompatActivity() {
         rewardButton.setOnClickListener(View.OnClickListener {
             val intent3 = Intent(this@MainActivity, RewardActivity::class.java)
             startActivity(intent3)
+        })
+
+        var nativeButton = findViewById<Button>(R.id.nav_native)
+        nativeButton.setOnClickListener(View.OnClickListener {
+            val intent4 = Intent(this@MainActivity, NativeActivity::class.java)
+            startActivity(intent4)
         })
     }
 }
