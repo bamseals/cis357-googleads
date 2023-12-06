@@ -26,7 +26,7 @@ class InterstitialActivity : AppCompatActivity() {
 
         InterstitialAd.load(
             this,
-            "ca-app-pub-3940256099942544/1033173712",  // Use your actual ad unit ID
+            "ca-app-pub-3940256099942544/1033173712",
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {

@@ -16,6 +16,9 @@
             android:name=".RewardActivity"
             android:exported="false" />
         <activity
+            android:name=".NativeActivity"
+            android:exported="false" />
+        <activity
             android:name=".BannerActivity"
             android:exported="false" />
         <activity
