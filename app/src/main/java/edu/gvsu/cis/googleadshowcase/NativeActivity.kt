@@ -8,6 +8,7 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
@@ -20,12 +21,19 @@ class NativeActivity : AppCompatActivity() {
 
         val adLoader = AdLoader.Builder(this, "ca-app-pub-3940256099942544/2247696110")
             .forNativeAd { ad: NativeAd ->
-
                 // Show the ad.
                 Log.d("NativeAd", "Ad loaded: ${ad.headline}")
 
                 val adView = findViewById<NativeAdView>(R.id.adView)
-                adView.setNativeAd(ad)
+
+                // Check if media content is available
+                if (ad.mediaContent != null) {
+                    val mediaView = adView.findViewById<MediaView>(R.id.ad_media)
+                    mediaView.setMediaContent(ad.mediaContent)
+                    Log.d("NativeAd", "Media content is not null.")
+                } else {
+                    Log.e("NativeAd", "Media content is null.")
+                }
 
                 val headlineView = adView.findViewById<TextView>(R.id.ad_headline)
                 headlineView.text = ad.headline
@@ -41,5 +49,6 @@ class NativeActivity : AppCompatActivity() {
 
         val adRequest = AdRequest.Builder().build()
         adLoader.loadAd(adRequest)
+
     }
 }
