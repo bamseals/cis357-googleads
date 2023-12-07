@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdLoader
@@ -44,10 +46,10 @@ class NativeActivity : AppCompatActivity() {
         headlineView.text = ad.headline
         adView.headlineView = headlineView
 
-        // Locate the MediaView and set it up if media content is available.
-        val mediaView = adView.findViewById<MediaView>(R.id.ad_media)
-        if (ad.mediaContent != null) {
-            mediaView.setMediaContent(ad.mediaContent)
+        // Load any media/images that may be included in the ad
+        val imageView = adView.findViewById<ImageView>(R.id.ad_media)
+        if (ad.images[0]?.drawable != null) {
+            imageView.setImageDrawable(ad.images[0]?.drawable)
         }
 
         // Call the NativeAdView's setNativeAd method to register the NativeAdObject.
