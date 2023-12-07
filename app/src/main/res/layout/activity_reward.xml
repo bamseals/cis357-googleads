@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    android:textSize="16dp"
     tools:context=".RewardActivity">
 
     <TextView
@@ -16,13 +15,15 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
+        android:textSize="24dp"
         android:text="Rewarded ads allow the application to incentivize the user to engage with one of their ads for a brief amount of time, in echange for some reward" />
 
     <Button
         android:id="@+id/rewardBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:textSize="24dp"
+        android:text="Claim Reward!" />
 
     <TextView
         android:id="@+id/rewardCount"
@@ -30,5 +31,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
+        android:textSize="24dp"
         android:text="Total earned reward: 0" />
 </LinearLayout>

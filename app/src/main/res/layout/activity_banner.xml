@@ -33,6 +33,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
+        android:textSize="24dp"
         android:text="Larger default static banner sizes are available as well:" />
 
     <com.google.android.gms.ads.AdView
@@ -50,6 +51,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="10dp"
+        android:textSize="24dp"
         android:text="Smart Banners are better at adapting to the width and height of your device: " />
 
     <com.google.android.gms.ads.AdView

@@ -1,7 +1,10 @@
 package edu.gvsu.cis.googleadshowcase
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -15,6 +18,7 @@ class InterstitialActivity : AppCompatActivity() {
 
     private var mInterstitialAd: InterstitialAd? = null
     private val TAG = "InterstitialActivity"
+    private var countdown = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +27,10 @@ class InterstitialActivity : AppCompatActivity() {
         MobileAds.initialize(this) {}
 
         var adRequest = AdRequest.Builder().build()
+        var timeLabel = findViewById<TextView>(R.id.ad_countdown)
+
+        // begin countdown timer
+        countDown(timeLabel)
 
         InterstitialAd.load(
             this,
@@ -65,7 +73,7 @@ class InterstitialActivity : AppCompatActivity() {
                             Log.d(TAG, "Ad showed fullscreen content.")
                         }
                     }
-                    showInterstitialAd()
+                    // showInterstitialAd()
                 }
             })
     }
@@ -77,5 +85,21 @@ class InterstitialActivity : AppCompatActivity() {
         } else {
             Log.d(TAG, "The interstitial ad wasn't ready yet.")
         }
+    }
+
+    private fun countDown(label: TextView) {
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                if (countdown > 0) {
+                    countdown -= 1
+                    label.text = "Ad will run in ${countdown}..."
+                    countDown(label)
+                } else {
+                    Log.d(TAG, "showAd:")
+                    showInterstitialAd()
+                }
+            },
+            1000 // value in milliseconds
+        )
     }
 }
