@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GoogleAdShowcase</string>
+    <string name="ad_app_icon_description">App Icon</string>
+
 </resources>

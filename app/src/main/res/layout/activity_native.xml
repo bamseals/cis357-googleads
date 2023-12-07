@@ -1,42 +1,24 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingTop="16dp"
     android:paddingRight="16dp"
-    android:paddingBottom="16dp"
-    tools:context=".NativeActivity">
-
-
+    android:paddingBottom="16dp">
 
     <com.google.android.gms.ads.nativead.NativeAdView
-        android:id="@+id/adView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/adContainer"
+        android:layout_width="300dp"
+        android:layout_height="290dp"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp">
 
 
-        <com.google.android.gms.ads.nativead.MediaView
-            android:id="@+id/ad_media"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/ad_headline"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Ad Headline"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-
 
     </com.google.android.gms.ads.nativead.NativeAdView>
+
 </RelativeLayout>
